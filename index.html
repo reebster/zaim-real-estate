@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zaim Idrees — Real Estate & Content</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --card: #161616;
+      --border: #222222;
+      --white: #f5f2ee;
+      --white-dim: rgba(245,242,238,0.6);
+      --white-faint: rgba(245,242,238,0.08);
+      --gold: #c9a84c;
+      --gold-glow: rgba(201,168,76,0.15);
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Outfit', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 52px;
+      transition: background 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+    nav.solid {
+      background: rgba(10,10,10,0.97);
+      border-color: var(--border);
+      backdrop-filter: blur(10px);
+    }
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      color: var(--white);
+    }
+    .logo span { color: var(--gold); font-style: italic; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-btn {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--bg);
+      padding: 11px 26px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav-btn:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 52px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      top: 50%; right: -100px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.9s ease both;
+    }
+    .hero-tag-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero-tag span {
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(4rem, 10vw, 10rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -3px;
+      animation: fadeUp 0.9s 0.1s ease both;
+      position: relative; z-index: 2;
+    }
+    .hero-headline .line2 {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+      display: block;
+    }
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 48px;
+      animation: fadeUp 0.9s 0.25s ease both;
+      position: relative; z-index: 2;
+    }
+    .hero-desc {
+      max-width: 460px;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--white-dim);
+    }
+    .hero-desc strong { color: var(--white); font-weight: 500; }
+    .hero-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--bg);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-gold:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--white-dim);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 15px 36px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--white); }
+    .hero-scroll-line {
+      position: absolute;
+      bottom: 0; left: 52px;
+      width: 1px; height: 72px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: fadeUp 1s 0.5s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-cell {
+      padding: 36px 40px;
+      border-right: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-cell:hover { background: var(--white-faint); }
+    .stat-val {
+      font-family: var(--font-serif);
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+    }
+
+    /* ── DUAL IDENTITY ── */
+    #identity {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 85vh;
+    }
+    .identity-panel {
+      padding: 80px 56px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      border-right: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+    }
+    .identity-panel:last-child { border-right: none; }
+    .identity-panel:hover { background: var(--white-faint); }
+    .identity-panel-num {
+      font-family: var(--font-serif);
+      font-size: 8rem;
+      font-weight: 900;
+      color: rgba(201,168,76,0.05);
+      position: absolute;
+      top: 20px; right: 30px;
+      line-height: 1;
+      pointer-events: none;
+      transition: color 0.4s;
+    }
+    .identity-panel:hover .identity-panel-num { color: rgba(201,168,76,0.1); }
+    .identity-top { position: relative; z-index: 2; }
+    .identity-icon {
+      font-size: 2.2rem;
+      margin-bottom: 24px;
+      display: block;
+    }
+    .identity-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .identity-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .identity-title em { font-style: italic; font-weight: 400; color: var(--gold); }
+    .identity-body {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--white-dim);
+      margin-bottom: 36px;
+    }
+    .identity-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .identity-list li {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--white-dim);
+    }
+    .identity-list li::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .identity-bottom { position: relative; z-index: 2; }
+    .identity-cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      margin-top: 40px;
+      transition: gap 0.2s;
+    }
+    .identity-cta:hover { gap: 20px; }
+
+    /* ── LISTINGS ── */
+    #listings {
+      padding: 100px 52px;
+      border-top: 1px solid var(--border);
+    }
+    .section-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 52px;
+    }
+    .section-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+    }
+    .section-title em { font-style: italic; font-weight: 400; color: var(--gold); }
+    .listings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+    .listing {
+      background: var(--surface);
+      overflow: hidden;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .listing:hover { background: var(--card); }
+    .listing-top {
+      height: 200px;
+      background: var(--card);
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .listing-pattern {
+      position: absolute; inset: 0;
+      opacity: 0.07;
+    }
+    .lp-a { background: repeating-linear-gradient(-45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 14px); }
+    .lp-b { background: radial-gradient(var(--gold) 1px, transparent 1px) 0 0 / 22px 22px; }
+    .lp-c { background: repeating-linear-gradient(0deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 18px); }
+    .listing-badge {
+      position: absolute; top: 18px; left: 18px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+    }
+    .badge-sale { background: var(--gold); color: var(--bg); }
+    .badge-soon { background: var(--border); color: var(--white-dim); }
+    .listing-emoji { font-size: 3rem; opacity: 0.1; position: relative; z-index: 1; }
+    .listing-body { padding: 28px; }
+    .listing-type {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .listing-name {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .listing-loc {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--white-dim);
+      margin-bottom: 22px;
+    }
+    .listing-specs {
+      display: flex; gap: 0;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+    .spec {
+      flex: 1;
+      display: flex; flex-direction: column; gap: 4px;
+      border-right: 1px solid var(--border);
+      padding-right: 16px;
+      margin-right: 16px;
+    }
+    .spec:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+    .spec-val {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .spec-key {
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+    }
+
+    /* ── CONTENT CREATOR ── */
+    #creator {
+      padding: 100px 52px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .creator-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .creator-left {}
+    .creator-platforms {
+      display: flex; flex-direction: column; gap: 1px;
+      margin-top: 48px;
+      background: var(--border);
+    }
+    .platform-row {
+      background: var(--bg);
+      padding: 24px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.3s;
+    }
+    .platform-row:hover { background: var(--card); }
+    .platform-left { display: flex; align-items: center; gap: 16px; }
+    .platform-icon {
+      width: 40px; height: 40px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .platform-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    .platform-desc {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--white-dim);
+      margin-top: 2px;
+    }
+    .platform-count {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .creator-right {}
+    .content-types {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+    .content-type {
+      background: var(--bg);
+      padding: 32px 28px;
+      transition: background 0.3s;
+    }
+    .content-type:hover { background: var(--card); }
+    .ct-icon { font-size: 1.6rem; margin-bottom: 14px; display: block; }
+    .ct-title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .ct-desc {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--white-dim);
+      line-height: 1.6;
+    }
+
+    /* ── PROCESS ── */
+    #process {
+      padding: 100px 52px;
+      border-top: 1px solid var(--border);
+    }
+    .process-track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 52px;
+      position: relative;
+    }
+    .process-track::before {
+      content: '';
+      position: absolute;
+      top: 28px; left: 28px; right: 28px;
+      height: 1px;
+      background: var(--border);
+      z-index: 0;
+    }
+    .process-step {
+      padding: 0 28px 0;
+      position: relative; z-index: 1;
+    }
+    .step-dot {
+      width: 56px; height: 56px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 28px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .process-step:hover .step-dot {
+      background: var(--gold);
+      color: var(--bg);
+      border-color: var(--gold);
+    }
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .step-desc {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--white-dim);
+      line-height: 1.7;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials {
+      padding: 100px 52px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 52px;
+    }
+    .testimonial {
+      background: var(--bg);
+      padding: 40px 36px;
+      transition: background 0.3s;
+    }
+    .testimonial:hover { background: var(--card); }
+    .testimonial-quote {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      color: var(--gold);
+      line-height: 0.8;
+      margin-bottom: 20px;
+      opacity: 0.6;
+    }
+    .testimonial-text {
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--white-dim);
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding: 100px 52px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-left {}
+    .contact-left p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--white-dim);
+      margin: 20px 0 40px;
+    }
+    .contact-methods { display: flex; flex-direction: column; gap: 0; }
+    .contact-method {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--white);
+      transition: color 0.2s;
+    }
+    .contact-method:hover { color: var(--gold); }
+    .method-icon {
+      width: 38px; height: 38px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+    .contact-method:hover .method-icon { border-color: var(--gold); }
+    .method-text { font-size: 0.88rem; font-weight: 400; letter-spacing: 0.5px; }
+
+    /* FORM */
+    form { display: flex; flex-direction: column; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .fgroup { display: flex; flex-direction: column; margin-top: 28px; }
+    .fgroup label {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      margin-bottom: 10px;
+    }
+    .fgroup input,
+    .fgroup select,
+    .fgroup textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 300;
+      padding: 10px 0;
+      outline: none;
+      transition: border-color 0.25s;
+    }
+    .fgroup input::placeholder,
+    .fgroup textarea::placeholder { color: rgba(245,242,238,0.2); }
+    .fgroup input:focus,
+    .fgroup select:focus,
+    .fgroup textarea:focus { border-color: var(--gold); }
+    .fgroup select option { background: #111; color: var(--white); }
+    .fgroup textarea { resize: none; height: 88px; }
+    .form-privacy {
+      margin-top: 16px;
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: rgba(245,242,238,0.25);
+      line-height: 1.6;
+    }
+    .form-submit {
+      margin-top: 32px;
+      align-self: flex-start;
+      background: var(--gold);
+      border: none;
+      color: var(--bg);
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 17px 40px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .form-submit:hover { opacity: 0.88; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 52px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--gold); font-style: italic; }
+    .footer-copy {
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+    }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a {
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 860px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      #hero { padding: 0 24px 60px; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; gap: 32px; }
+      .hero-actions { align-items: flex-start; }
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .stat-cell { border-bottom: 1px solid var(--border); }
+      #identity { grid-template-columns: 1fr; }
+      .identity-panel { border-right: none; border-bottom: 1px solid var(--border); }
+      #listings, #creator, #process, #testimonials, #contact { padding: 72px 24px; }
+      .listings-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .creator-inner { grid-template-columns: 1fr; gap: 48px; }
+      .content-types { grid-template-columns: 1fr 1fr; }
+      .process-track { grid-template-columns: 1fr 1fr; }
+      .process-track::before { display: none; }
+      .process-step { padding: 0 0 40px; }
+      #contact { grid-template-columns: 1fr; gap: 48px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      footer { flex-direction: column; gap: 20px; padding: 36px 24px; text-align: center; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#hero" class="logo">Zaim <span>Idrees</span></a>
+    <ul class="nav-links">
+      <li><a href="#identity">About</a></li>
+      <li><a href="#listings">Listings</a></li>
+      <li><a href="#creator">Content</a></li>
+      <li><a href="#process">Process</a></li>
+    </ul>
+    <a href="#contact" class="nav-btn">Book a Call</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-scroll-line"></div>
+
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      <span>Real Estate Agent · Content Creator · Based Locally</span>
+    </div>
+
+    <h1 class="hero-headline">
+      Find Your<br>
+      <span class="line2">Dream Home.</span>
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        <strong>Zaim Idrees</strong> is a licensed real estate agent and content creator helping buyers, sellers, and investors navigate the market — with full transparency, zero pressure, and a track record built on trust.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-gold">Book a Free Consultation</a>
+        <a href="#listings" class="btn-outline">Browse Listings</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar reveal">
+    <div class="stat-cell">
+      <div class="stat-val">14K+</div>
+      <div class="stat-label">Instagram Followers</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">500+</div>
+      <div class="stat-label">YouTube Subscribers</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">24h</div>
+      <div class="stat-label">Response Time</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">100%</div>
+      <div class="stat-label">Client Focused</div>
+    </div>
+  </div>
+
+  <!-- DUAL IDENTITY -->
+  <section id="identity">
+    <div class="identity-panel reveal">
+      <div class="identity-panel-num">01</div>
+      <div class="identity-top">
+        <span class="identity-icon">🏠</span>
+        <p class="identity-label">Real Estate Agent</p>
+        <h2 class="identity-title">Your Local<br><em>Property Expert</em></h2>
+        <p class="identity-body">From your first showing to the final signature — Zaim handles every step with market knowledge, honest advice, and real negotiation power. No fluff, just results.</p>
+        <ul class="identity-list">
+          <li>Residential buying & selling</li>
+          <li>Investment property guidance</li>
+          <li>First-time buyer support</li>
+          <li>Market pricing & valuation</li>
+          <li>Full negotiation representation</li>
+        </ul>
+      </div>
+      <div class="identity-bottom">
+        <a href="#contact" class="identity-cta">Book a Free Call →</a>
+      </div>
+    </div>
+    <div class="identity-panel reveal">
+      <div class="identity-panel-num">02</div>
+      <div class="identity-top">
+        <span class="identity-icon">📱</span>
+        <p class="identity-label">Content Creator</p>
+        <h2 class="identity-title">Real Estate,<br><em>Unfiltered</em></h2>
+        <p class="identity-body">With 14K+ followers on Instagram and a growing YouTube presence, Zaim documents the real side of real estate — the tips, the tours, and the truth behind the market.</p>
+        <ul class="identity-list">
+          <li>Property tour videos</li>
+          <li>Buyer & seller tip content</li>
+          <li>Market update reels</li>
+          <li>Local business promotions</li>
+          <li>Brand partnership opportunities</li>
+        </ul>
+      </div>
+      <div class="identity-bottom">
+        <a href="#contact" class="identity-cta">Partner With Me →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTINGS -->
+  <section id="listings">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-eyebrow">02 — Properties</p>
+        <h2 class="section-title">Current <em>Listings</em></h2>
+      </div>
+      <a href="#contact" class="btn-outline">Request a Showing →</a>
+    </div>
+    <div class="listings-grid reveal">
+      <div class="listing">
+        <div class="listing-top">
+          <div class="listing-pattern lp-a"></div>
+          <span class="listing-badge badge-sale">For Sale</span>
+          <span class="listing-emoji">🏡</span>
+        </div>
+        <div class="listing-body">
+          <p class="listing-type">Residential · Detached</p>
+          <h3 class="listing-name">Modern Family Home</h3>
+          <p class="listing-loc">📍 Contact for Address</p>
+          <div class="listing-specs">
+            <div class="spec"><span class="spec-val">4</span><span class="spec-key">Beds</span></div>
+            <div class="spec"><span class="spec-val">3</span><span class="spec-key">Baths</span></div>
+            <div class="spec"><span class="spec-val">2,100</span><span class="spec-key">Sq Ft</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="listing">
+        <div class="listing-top">
+          <div class="listing-pattern lp-b"></div>
+          <span class="listing-badge badge-sale">For Sale</span>
+          <span class="listing-emoji">🏢</span>
+        </div>
+        <div class="listing-body">
+          <p class="listing-type">Condo · Downtown</p>
+          <h3 class="listing-name">Urban Luxury Condo</h3>
+          <p class="listing-loc">📍 Contact for Address</p>
+          <div class="listing-specs">
+            <div class="spec"><span class="spec-val">2</span><span class="spec-key">Beds</span></div>
+            <div class="spec"><span class="spec-val">2</span><span class="spec-key">Baths</span></div>
+            <div class="spec"><span class="spec-val">980</span><span class="spec-key">Sq Ft</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="listing">
+        <div class="listing-top">
+          <div class="listing-pattern lp-c"></div>
+          <span class="listing-badge badge-soon">Coming Soon</span>
+          <span class="listing-emoji">🏘</span>
+        </div>
+        <div class="listing-body">
+          <p class="listing-type">Townhouse · Suburban</p>
+          <h3 class="listing-name">Corner Townhouse</h3>
+          <p class="listing-loc">📍 Join the Waitlist</p>
+          <div class="listing-specs">
+            <div class="spec"><span class="spec-val">3</span><span class="spec-key">Beds</span></div>
+            <div class="spec"><span class="spec-val">2</span><span class="spec-key">Baths</span></div>
+            <div class="spec"><span class="spec-val">1,450</span><span class="spec-key">Sq Ft</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT CREATOR -->
+  <section id="creator">
+    <div class="creator-inner">
+      <div class="creator-left reveal">
+        <p class="section-eyebrow">03 — Content</p>
+        <h2 class="section-title">Follow the<br><em>Journey</em></h2>
+        <p style="font-size:0.95rem; font-weight:300; line-height:1.8; color:var(--white-dim); margin-top:20px;">Zaim takes his audience behind the scenes of real estate — the properties, the process, and everything in between. Follow along for market tips, property tours, and honest advice you won't get anywhere else.</p>
+        <div class="creator-platforms">
+          <div class="platform-row">
+            <div class="platform-left">
+              <div class="platform-icon">📸</div>
+              <div>
+                <div class="platform-name">Instagram</div>
+                <div class="platform-desc">Daily content · Reels · Stories · Tours</div>
+              </div>
+            </div>
+            <div class="platform-count">14K+</div>
+          </div>
+          <div class="platform-row">
+            <div class="platform-left">
+              <div class="platform-icon">▶</div>
+              <div>
+                <div class="platform-name">YouTube</div>
+                <div class="platform-desc">Long-form tours · Buyer guides · Q&As</div>
+              </div>
+            </div>
+            <div class="platform-count">500+</div>
+          </div>
+        </div>
+      </div>
+      <div class="creator-right reveal">
+        <div class="content-types">
+          <div class="content-type">
+            <span class="ct-icon">🏠</span>
+            <div class="ct-title">Property Tours</div>
+            <p class="ct-desc">Walk-through videos of active and upcoming listings — real footage, honest commentary.</p>
+          </div>
+          <div class="content-type">
+            <span class="ct-icon">📊</span>
+            <div class="ct-title">Market Updates</div>
+            <p class="ct-desc">Regular breakdowns of what's happening in the local market — prices, trends, and tips.</p>
+          </div>
+          <div class="content-type">
+            <span class="ct-icon">🎯</span>
+            <div class="ct-title">Buyer & Seller Tips</div>
+            <p class="ct-desc">Practical, no-nonsense advice for anyone navigating the buying or selling process.</p>
+          </div>
+          <div class="content-type">
+            <span class="ct-icon">🤝</span>
+            <div class="ct-title">Brand Partnerships</div>
+            <p class="ct-desc">Authentic promotions for local businesses that align with Zaim's audience and values.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-eyebrow">04 — How It Works</p>
+        <h2 class="section-title">Simple. <em>Transparent.</em><br>Start to Finish.</h2>
+      </div>
+    </div>
+    <div class="process-track reveal">
+      <div class="process-step">
+        <div class="step-dot">01</div>
+        <h3 class="step-title">Free Consultation</h3>
+        <p class="step-desc">A quick call to understand your goals, timeline, and budget. Zero pressure, zero obligation.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-dot">02</div>
+        <h3 class="step-title">Curated Search</h3>
+        <p class="step-desc">Zaim handpicks properties that match your criteria and books private viewings at your pace.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-dot">03</div>
+        <h3 class="step-title">Offer & Negotiate</h3>
+        <p class="step-desc">Strategic offer writing and tough negotiation — always in your corner, never cutting corners.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-dot">04</div>
+        <h3 class="step-title">Keys in Hand</h3>
+        <p class="step-desc">Smooth closing, final walkthrough, and handover. From first search to front door.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-eyebrow">05 — Reviews</p>
+        <h2 class="section-title">What Clients <em>Say</em></h2>
+      </div>
+    </div>
+    <div class="testimonials-grid reveal">
+      <div class="testimonial">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Zaim made buying our first home feel manageable. He was straight with us the whole time — no hype, just facts. We got the house we wanted under asking price.</p>
+        <span class="testimonial-author">— First-Time Buyer, Local Client</span>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">We had our home listed with another agent for months. Zaim took over, posted it on his socials, and we had offers within the first week. The reach is real.</p>
+        <span class="testimonial-author">— Home Seller, Local Client</span>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">As an investor I've worked with a lot of agents. Zaim actually knows the numbers, responds fast, and doesn't waste my time. That's rare to find.</p>
+        <span class="testimonial-author">— Property Investor, Repeat Client</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-left reveal">
+      <p class="section-eyebrow">06 — Contact</p>
+      <h2 class="section-title">Let's Talk<br><em>Real Estate</em></h2>
+      <p>Whether you're ready to move or just starting to explore — reach out. Zaim responds personally to every inquiry within 24 hours.</p>
+      <div class="contact-methods">
+        <a href="https://instagram.com/zaimidrees" target="_blank" class="contact-method">
+          <div class="method-icon">📸</div>
+          <span class="method-text">@zaimidrees on Instagram</span>
+        </a>
+        <a href="https://youtube.com" target="_blank" class="contact-method">
+          <div class="method-icon">▶</div>
+          <span class="method-text">Zaim Idrees on YouTube</span>
+        </a>
+        <a href="mailto:zaim@zaimidrees.com" class="contact-method">
+          <div class="method-icon">✉</div>
+          <span class="method-text">zaim@zaimidrees.com</span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-right reveal">
+      <form action="https://formspree.io/f/xnjbgeyj" method="POST">
+        <div class="form-row">
+          <div class="fgroup">
+            <label>First Name</label>
+            <input type="text" name="first_name" placeholder="John" required/>
+          </div>
+          <div class="fgroup">
+            <label>Last Name</label>
+            <input type="text" name="last_name" placeholder="Smith" required/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="fgroup">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="you@email.com" required/>
+          </div>
+          <div class="fgroup">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" placeholder="(555) 000-0000"/>
+          </div>
+        </div>
+        <div class="fgroup">
+          <label>I Am Looking To</label>
+          <select name="intent">
+            <option value="">Select your goal</option>
+            <option>Buy a Property</option>
+            <option>Sell a Property</option>
+            <option>Buy & Sell</option>
+            <option>Invest in Real Estate</option>
+            <option>Partner / Collaborate</option>
+            <option>Just Exploring</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="fgroup">
+            <label>Budget Range</label>
+            <select name="budget">
+              <option value="">Select a range</option>
+              <option>Under $300,000</option>
+              <option>$300,000 – $500,000</option>
+              <option>$500,000 – $800,000</option>
+              <option>$800,000 – $1,200,000</option>
+              <option>$1,200,000+</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label>Timeline</label>
+            <select name="timeline">
+              <option value="">When are you looking?</option>
+              <option>ASAP</option>
+              <option>Within 1–3 months</option>
+              <option>3–6 months</option>
+              <option>6–12 months</option>
+              <option>Just browsing</option>
+            </select>
+          </div>
+        </div>
+        <div class="fgroup">
+          <label>Anything Else?</label>
+          <textarea name="message" placeholder="Tell me what you're looking for..."></textarea>
+        </div>
+        <p class="form-privacy">Your information stays private and is only used to follow up on your real estate inquiry.</p>
+        <button type="submit" class="form-submit">Send Inquiry →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#hero" class="footer-logo">Zaim <span>Idrees</span></a>
+    <span class="footer-copy">© 2025 Zaim Idrees · All Rights Reserved</span>
+    <div class="footer-links">
+      <a href="https://instagram.com/zaimidrees" target="_blank">Instagram</a>
+      <a href="https://youtube.com" target="_blank">YouTube</a>
+      <a href="mailto:zaim@zaimidrees.com">Email</a>
+    </div>
+  </footer>
+
+  <script>
+    // Nav solid on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('solid', window.scrollY > 50);
+    });
+
+    // Scroll reveal
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    els.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
