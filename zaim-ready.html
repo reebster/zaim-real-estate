@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zaim Idrees — Real Estate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #f8f5f0;
+      --cream-dark: #ede9e2;
+      --black: #0c0c0b;
+      --dark: #161614;
+      --card: #1d1d1b;
+      --border-dark: #2a2a27;
+      --border-light: #ddd9d2;
+      --gold: #b8975a;
+      --gold-light: #d4b07a;
+      --muted: #8a8780;
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-sans: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--black);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 56px;
+      background: rgba(248,245,240,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-color: var(--border-light); }
+    .nav-logo {
+      display: flex; flex-direction: column;
+      text-decoration: none;
+    }
+    .nav-logo-name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: var(--black);
+      line-height: 1;
+    }
+    .nav-logo-title {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 3px;
+    }
+    .nav-links {
+      display: flex; gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--black); }
+    .nav-cta {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid var(--black);
+      color: var(--black);
+      padding: 11px 28px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.25s;
+    }
+    .nav-cta:hover {
+      background: var(--black);
+      color: var(--cream);
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 88px;
+    }
+    .hero-left {
+      padding: 80px 56px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute; right: 0; top: 15%; bottom: 15%;
+      width: 1px;
+      background: var(--border-light);
+    }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 40px;
+    }
+    .hero-eyebrow-line {
+      width: 40px; height: 1px;
+      background: var(--gold);
+    }
+    .hero-eyebrow span {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero-name {
+      font-family: var(--font-serif);
+      font-size: clamp(3.5rem, 6vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 48px;
+      margin-top: 16px;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #5a5855;
+      font-weight: 300;
+      max-width: 420px;
+      margin-bottom: 56px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.25s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold); }
+    .btn-secondary {
+      border: 1px solid var(--border-light);
+      color: var(--black);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      text-decoration: none;
+      font-weight: 400;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--black); }
+
+    .hero-right {
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 56px;
+    }
+    /* Decorative pattern on hero right */
+    .hero-right-pattern {
+      position: absolute; inset: 0;
+      opacity: 0.04;
+      background-image:
+        linear-gradient(var(--cream) 1px, transparent 1px),
+        linear-gradient(90deg, var(--cream) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-right-accent {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px; height: 300px;
+      border: 1px solid rgba(184,151,90,0.15);
+      border-radius: 50%;
+    }
+    .hero-right-accent::before {
+      content: '';
+      position: absolute; inset: 30px;
+      border: 1px solid rgba(184,151,90,0.1);
+      border-radius: 50%;
+    }
+    .hero-right-accent::after {
+      content: '';
+      position: absolute; inset: 60px;
+      border: 1px solid rgba(184,151,90,0.08);
+      border-radius: 50%;
+    }
+    .hero-monogram {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-serif);
+      font-size: 9rem;
+      font-weight: 300;
+      color: rgba(184,151,90,0.12);
+      letter-spacing: -8px;
+      font-style: italic;
+      user-select: none;
+    }
+    .hero-stats-panel {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+    .hero-stat {
+      padding: 28px 24px;
+      background: rgba(255,255,255,0.03);
+    }
+    .hero-stat-num {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .hero-stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* MARQUEE */
+    .marquee-bar {
+      background: var(--black);
+      padding: 14px 0;
+      overflow: hidden;
+      border-top: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .marquee-inner {
+      display: flex; gap: 60px;
+      animation: marquee 20s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      flex-shrink: 0;
+    }
+    .marquee-dot {
+      color: var(--gold);
+      flex-shrink: 0;
+      font-size: 0.65rem;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ABOUT */
+    #about {
+      padding: 140px 56px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 100px;
+      align-items: start;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .about-left {
+      position: sticky; top: 120px;
+    }
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 4vw, 4rem);
+      font-weight: 300;
+      line-height: 1.05;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .about-right {
+      padding-top: 8px;
+    }
+    .about-intro {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--black);
+      margin-bottom: 32px;
+    }
+    .about-body {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: #6a6763;
+      font-weight: 300;
+      margin-bottom: 56px;
+    }
+    .about-body p + p { margin-top: 16px; }
+    .about-credentials {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border-light);
+    }
+    .credential {
+      padding: 28px;
+      background: var(--cream);
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .credential-icon {
+      width: 32px; height: 32px;
+      border: 1px solid var(--border-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .credential h4 {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .credential p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* LISTINGS */
+    #listings {
+      padding: 140px 56px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .listings-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 60px;
+    }
+    .listings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .listing-card {
+      background: var(--black);
+      color: var(--cream);
+      overflow: hidden;
+      transition: transform 0.4s ease;
+      cursor: default;
+    }
+    .listing-card:hover { transform: translateY(-6px); }
+    .listing-visual {
+      height: 220px;
+      background: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .listing-visual-pattern {
+      position: absolute; inset: 0;
+      opacity: 0.06;
+    }
+    .lp1 { background: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 12px); }
+    .lp2 { background: radial-gradient(circle at 30% 70%, var(--gold) 1px, transparent 1px) 0 0 / 24px 24px; }
+    .lp3 { background: repeating-linear-gradient(90deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 20px); }
+    .listing-badge {
+      position: absolute; top: 20px; left: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--black);
+      padding: 5px 12px;
+    }
+    .listing-icon {
+      font-size: 3.5rem;
+      opacity: 0.08;
+      z-index: 1;
+    }
+    .listing-info { padding: 28px; }
+    .listing-type {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .listing-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .listing-location {
+      font-size: 0.8rem;
+      color: rgba(248,245,240,0.4);
+      margin-bottom: 20px;
+    }
+    .listing-details {
+      display: flex; gap: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .listing-detail {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: rgba(248,245,240,0.4);
+      letter-spacing: 1px;
+    }
+    .listing-detail strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 2px;
+    }
+
+    /* PROCESS */
+    #process {
+      padding: 140px 56px;
+      background: var(--black);
+      color: var(--cream);
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .process-header { margin-bottom: 80px; }
+    .process-header .section-title { color: var(--cream); }
+    .process-header .section-num { color: var(--gold); }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-dark);
+    }
+    .process-step {
+      padding: 48px 36px;
+      background: var(--dark);
+      position: relative;
+      transition: background 0.3s;
+    }
+    .process-step:hover { background: var(--card); }
+    .step-num {
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(184,151,90,0.15);
+      line-height: 1;
+      margin-bottom: 28px;
+      transition: color 0.3s;
+    }
+    .process-step:hover .step-num { color: rgba(184,151,90,0.35); }
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 14px;
+      color: var(--cream);
+    }
+    .step-desc {
+      font-size: 0.85rem;
+      color: rgba(248,245,240,0.45);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .step-line {
+      position: absolute; bottom: 0; left: 36px; right: 36px;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .process-step:hover .step-line { transform: scaleX(1); }
+
+    /* SOCIAL */
+    #social {
+      padding: 140px 56px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .social-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 60px;
+    }
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-light);
+      margin-bottom: 1px;
+    }
+    .social-card {
+      background: var(--cream);
+      padding: 36px 32px;
+      display: flex; flex-direction: column; gap: 10px;
+      transition: background 0.3s;
+    }
+    .social-card:hover { background: var(--cream-dark); }
+    .social-platform {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .social-metric {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 300;
+      line-height: 1;
+    }
+    .social-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .social-cta-bar {
+      background: var(--black);
+      padding: 28px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .social-cta-text {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--cream);
+    }
+    .social-cta-text em { font-style: italic; color: var(--gold-light); }
+    .social-links { display: flex; gap: 16px; }
+    .social-link-btn {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--cream);
+      padding: 12px 24px;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .social-link-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* CONTACT / LEAD CAPTURE */
+    #contact {
+      padding: 140px 56px;
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 100px;
+      background: var(--cream-dark);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .contact-left .section-title { margin-bottom: 24px; }
+    .contact-intro {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #6a6763;
+      font-weight: 300;
+      margin-bottom: 48px;
+    }
+    .contact-details { display: flex; flex-direction: column; gap: 0; }
+    .contact-row {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border-light);
+      text-decoration: none;
+      color: var(--black);
+      transition: color 0.2s;
+    }
+    .contact-row:hover { color: var(--gold); }
+    .contact-row-icon {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      transition: border-color 0.2s;
+    }
+    .contact-row:hover .contact-row-icon { border-color: var(--gold); }
+    .contact-row span {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+    /* FORM */
+    .lead-form { display: flex; flex-direction: column; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .form-group { display: flex; flex-direction: column; margin-top: 32px; }
+    .form-group label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--black);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      padding: 10px 0;
+      outline: none;
+      transition: border-color 0.25s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { height: 90px; resize: none; }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: var(--cream); }
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+    .form-submit {
+      margin-top: 36px;
+      background: var(--black);
+      border: none;
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 18px 44px;
+      cursor: pointer;
+      transition: background 0.25s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--gold); }
+
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      color: var(--cream);
+      padding: 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .footer-brand .footer-name {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 300;
+      margin-bottom: 6px;
+    }
+    .footer-brand .footer-name em { font-style: italic; color: var(--gold); }
+    .footer-brand p {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-nav { display: flex; flex-direction: column; gap: 12px; }
+    .footer-nav a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 1px;
+    }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-bottom {
+      grid-column: 1 / -1;
+      padding-top: 40px;
+      border-top: 1px solid var(--border-dark);
+      display: flex; justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 60px 24px; }
+      .hero-left::after { display: none; }
+      .hero-right { min-height: 300px; }
+      #about { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+      .about-left { position: static; }
+      .about-credentials { grid-template-columns: 1fr; }
+      #listings, #process, #social, #contact { padding: 80px 24px; }
+      .listings-grid, .process-steps, .social-grid { grid-template-columns: 1fr; }
+      .listings-header, .social-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      #contact { grid-template-columns: 1fr; gap: 48px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      footer { grid-template-columns: 1fr; padding: 40px 24px; }
+      .footer-bottom { flex-direction: column; gap: 12px; }
+      .social-cta-bar { flex-direction: column; gap: 20px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">
+      <span class="nav-logo-name">Zaim Idrees</span>
+      <span class="nav-logo-title">Licensed Real Estate Agent</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#listings">Listings</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#social">Media</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Book a Call</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>Real Estate · Your Market Expert</span>
+      </div>
+      <h1 class="hero-name">Zaim<br><em>Idrees</em></h1>
+      <p class="hero-subtitle">Licensed Real Estate Agent</p>
+      <p class="hero-desc">Whether you're buying your first home, selling an investment, or simply exploring — I bring local expertise, honest guidance, and a track record you can trust.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Book a Free Consultation</a>
+        <a href="#listings" class="btn-secondary">View Listings</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-right-pattern"></div>
+      <div class="hero-right-accent"></div>
+      <div class="hero-monogram">ZI</div>
+      <div class="hero-stats-panel">
+        <div class="hero-stat">
+          <div class="hero-stat-num">14K+</div>
+          <div class="hero-stat-label">Instagram Followers</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">Client Dedication</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">Local</div>
+          <div class="hero-stat-label">Market Expert</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">Fast</div>
+          <div class="hero-stat-label">Response Time</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-bar">
+    <div class="marquee-inner">
+      <span class="marquee-item">Residential</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Commercial</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Investment Properties</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">First-Time Buyers</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Relocation</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Property Valuation</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Negotiation</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Residential</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Commercial</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Investment Properties</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">First-Time Buyers</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Relocation</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Property Valuation</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Negotiation</span><span class="marquee-dot">·</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-left reveal">
+      <p class="section-num">01 — About</p>
+      <h2 class="section-title">The Agent<br>Behind the<br><em>Brand</em></h2>
+    </div>
+    <div class="about-right reveal">
+      <p class="about-intro">"Real estate isn't just transactions — it's people finding their next chapter. I take that seriously."</p>
+      <div class="about-body">
+        <p>Zaim Idrees is a real estate agent who combines deep market knowledge with a direct, transparent approach that clients actually enjoy. No runaround, no pressure — just honest guidance from someone who genuinely cares about your outcome.</p>
+        <p>Beyond the listings, Zaim has built a growing social media presence documenting the real side of real estate — what buying actually looks like, what to watch out for, and how to navigate the market with confidence. That same transparency carries through every client relationship.</p>
+      </div>
+      <div class="about-credentials">
+        <div class="credential">
+          <div class="credential-icon">🏠</div>
+          <div>
+            <h4>Residential Sales</h4>
+            <p>From starter homes to family properties — guiding buyers and sellers at every price point.</p>
+          </div>
+        </div>
+        <div class="credential">
+          <div class="credential-icon">📊</div>
+          <div>
+            <h4>Market Analysis</h4>
+            <p>Data-driven pricing strategies so you never leave money on the table.</p>
+          </div>
+        </div>
+        <div class="credential">
+          <div class="credential-icon">🤝</div>
+          <div>
+            <h4>Buyer Representation</h4>
+            <p>Negotiating in your corner from offer to close — full advocacy, always.</p>
+          </div>
+        </div>
+        <div class="credential">
+          <div class="credential-icon">📱</div>
+          <div>
+            <h4>Digital Presence</h4>
+            <p>Listings reach thousands through Zaim's social platforms — more eyes, faster sales.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTINGS -->
+  <section id="listings">
+    <div class="listings-header reveal">
+      <div>
+        <p class="section-num">02 — Properties</p>
+        <h2 class="section-title">Current <em>Listings</em></h2>
+      </div>
+      <a href="#contact" class="btn-secondary">Request a Showing →</a>
+    </div>
+    <div class="listings-grid reveal">
+      <div class="listing-card">
+        <div class="listing-visual">
+          <div class="listing-visual-pattern lp1"></div>
+          <div class="listing-badge">For Sale</div>
+          <span class="listing-icon">🏡</span>
+        </div>
+        <div class="listing-info">
+          <p class="listing-type">Residential · Detached</p>
+          <h3 class="listing-title">Modern Family Home</h3>
+          <p class="listing-location">📍 Available — Contact for Address</p>
+          <div class="listing-details">
+            <div class="listing-detail"><strong>4</strong>Beds</div>
+            <div class="listing-detail"><strong>3</strong>Baths</div>
+            <div class="listing-detail"><strong>2,100</strong>Sq Ft</div>
+          </div>
+        </div>
+      </div>
+      <div class="listing-card">
+        <div class="listing-visual">
+          <div class="listing-visual-pattern lp2"></div>
+          <div class="listing-badge">For Sale</div>
+          <span class="listing-icon">🏢</span>
+        </div>
+        <div class="listing-info">
+          <p class="listing-type">Condo · Downtown</p>
+          <h3 class="listing-title">Urban Luxury Condo</h3>
+          <p class="listing-location">📍 Available — Contact for Address</p>
+          <div class="listing-details">
+            <div class="listing-detail"><strong>2</strong>Beds</div>
+            <div class="listing-detail"><strong>2</strong>Baths</div>
+            <div class="listing-detail"><strong>980</strong>Sq Ft</div>
+          </div>
+        </div>
+      </div>
+      <div class="listing-card">
+        <div class="listing-visual">
+          <div class="listing-visual-pattern lp3"></div>
+          <div class="listing-badge">Coming Soon</div>
+          <span class="listing-icon">🏘</span>
+        </div>
+        <div class="listing-info">
+          <p class="listing-type">Townhouse · Suburban</p>
+          <h3 class="listing-title">Corner Townhouse</h3>
+          <p class="listing-location">📍 Coming Soon — Join Waitlist</p>
+          <div class="listing-details">
+            <div class="listing-detail"><strong>3</strong>Beds</div>
+            <div class="listing-detail"><strong>2</strong>Baths</div>
+            <div class="listing-detail"><strong>1,450</strong>Sq Ft</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="process-header reveal">
+      <p class="section-num" style="color: var(--gold);">03 — How It Works</p>
+      <h2 class="section-title" style="color: var(--cream);">A Simple,<br><em>Transparent</em> Process</h2>
+    </div>
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Free Consultation</h3>
+        <p class="step-desc">We start with a no-pressure call or meeting to understand exactly what you're looking for — your timeline, budget, and goals.</p>
+        <div class="step-line"></div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Property Search</h3>
+        <p class="step-desc">I curate a personalized list of properties that match your criteria and arrange private viewings at your convenience.</p>
+        <div class="step-line"></div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Offer & Negotiate</h3>
+        <p class="step-desc">When you find the right property, I handle the offer strategy and negotiation — protecting your interests every step of the way.</p>
+        <div class="step-line"></div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <h3 class="step-title">Close & Celebrate</h3>
+        <p class="step-desc">I guide you through closing paperwork, final walkthroughs, and key handover. From search to sold — seamless start to finish.</p>
+        <div class="step-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section id="social">
+    <div class="social-header reveal">
+      <div>
+        <p class="section-num">04 — Media</p>
+        <h2 class="section-title">Follow the<br><em>Journey</em></h2>
+      </div>
+    </div>
+    <div class="social-grid reveal">
+      <div class="social-card">
+        <span class="social-platform">Instagram</span>
+        <span class="social-metric">14K+</span>
+        <p class="social-desc">Real estate tips, market updates, property tours, and behind-the-scenes content.</p>
+      </div>
+      <div class="social-card">
+        <span class="social-platform">YouTube</span>
+        <span class="social-metric">500+</span>
+        <p class="social-desc">In-depth property walkthroughs, buyer guides, and Q&As for first-time homeowners.</p>
+      </div>
+      <div class="social-card">
+        <span class="social-platform">Reach</span>
+        <span class="social-metric">Local</span>
+        <p class="social-desc">Focused on the local market — the people, the properties, and the neighborhoods that matter.</p>
+      </div>
+      <div class="social-card">
+        <span class="social-platform">Response Time</span>
+        <span class="social-metric">&lt;24h</span>
+        <p class="social-desc">Fast, personal responses to every inquiry. No automated replies, no being passed around.</p>
+      </div>
+    </div>
+    <div class="social-cta-bar reveal">
+      <span class="social-cta-text">Stay updated on new listings and <em>market insights</em></span>
+      <div class="social-links">
+        <a href="https://instagram.com" target="_blank" class="social-link-btn">Instagram →</a>
+        <a href="https://youtube.com" target="_blank" class="social-link-btn">YouTube →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / LEAD CAPTURE -->
+  <section id="contact">
+    <div class="contact-left reveal">
+      <p class="section-num">05 — Contact</p>
+      <h2 class="section-title">Let's Find<br>Your Next<br><em>Home</em></h2>
+      <p class="contact-intro">Ready to start the conversation? Fill out the form and I'll be in touch within 24 hours. No pressure, no obligation — just a real conversation about what you're looking for.</p>
+      <div class="contact-details">
+        <a href="https://instagram.com" target="_blank" class="contact-row">
+          <div class="contact-row-icon">📸</div>
+          <span>@zaimidrees</span>
+        </a>
+        <a href="https://youtube.com" target="_blank" class="contact-row">
+          <div class="contact-row-icon">▶</div>
+          <span>Zaim Idrees on YouTube</span>
+        </a>
+        <a href="/cdn-cgi/l/email-protection#5d273c34301d273c343034392f38382e733e3230" class="contact-row">
+          <div class="contact-row-icon">✉</div>
+          <span><span class="__cf_email__" data-cfemail="c2b8a3abaf82b8a3abafaba6b0a7a7b1eca1adaf">[email&#160;protected]</span></span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-right reveal">
+      <!-- Replace xnjbgeyj with Formspree form ID -->
+      <form class="lead-form" action="https://formspree.io/f/xnjbgeyj" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" name="first_name" placeholder="John" required/>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" name="last_name" placeholder="Smith" required/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="you@email.com" required/>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" placeholder="(555) 000-0000"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>I Am Looking To</label>
+          <select name="intent">
+            <option value="">Select your goal</option>
+            <option>Buy a Property</option>
+            <option>Sell a Property</option>
+            <option>Buy & Sell</option>
+            <option>Invest in Real Estate</option>
+            <option>Just Exploring</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Budget Range</label>
+          <select name="budget">
+            <option value="">Select a range</option>
+            <option>Under $300,000</option>
+            <option>$300,000 – $500,000</option>
+            <option>$500,000 – $800,000</option>
+            <option>$800,000 – $1,200,000</option>
+            <option>$1,200,000+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Anything Else?</label>
+          <textarea name="message" placeholder="Tell me a bit about what you're looking for..."></textarea>
+        </div>
+        <p class="form-note">Your information is private and will only be used to contact you about your real estate needs.</p>
+        <button type="submit" class="form-submit">Submit Inquiry →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <div class="footer-name">Zaim <em>Idrees</em></div>
+      <p>Licensed Real Estate Agent</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="#about">About</a>
+      <a href="#listings">Listings</a>
+      <a href="#process">Process</a>
+      <a href="#social">Media</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="footer-nav">
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+      <a href="https://youtube.com" target="_blank">YouTube</a>
+      <a href="/cdn-cgi/l/email-protection#5c263d35311c263d353135382e39392f723f3331">Email</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Zaim Idrees · All Rights Reserved</span>
+      <span>Real Estate · Honest. Local. Dedicated.</span>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new Intersectio
